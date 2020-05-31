@@ -408,20 +408,20 @@ z-index: 999999">
                     <li class="dropdown_menu">
                         <a href="javascript:;">
                             <i class="fa fa-anchor"></i>
-                            <span class="link-title menu_hide">&nbsp; Writters</span>
+                            <span class="link-title menu_hide">&nbsp; Writers</span>
                             <span class="fa arrow menu_hide"></span>
                         </a>
                         <ul>
                             <li>
-                                <a href="{{route('add-writter')}}">
+                                <a href="{{route('add-writer')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="link-title">&nbsp;Add Writters</span>
+                                    <span class="link-title">&nbsp;Add writers</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('manage-writters')}}">
+                                <a href="{{route('manage-writers')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    &nbsp; Manage Writters
+                                    &nbsp; Manage writers
                                 </a>
                             </li>
                         </ul>
