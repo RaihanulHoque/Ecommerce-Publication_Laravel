@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba200ee2-8de7-4a0b-aa9a-d75cf8d35eb5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/home/home.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/master.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,20 +71,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/master.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="444" column="80" selection-start-line="444" selection-start-column="80" selection-end-line="444" selection-end-column="80" />
+            <state relative-caret-position="670">
+              <caret line="449" lean-forward="true" selection-start-line="449" selection-end-line="449" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="e#24652#24658#0#HTML" expanded="true" />
                 <element signature="e#24959#24965#0#HTML" expanded="true" />
-                <element signature="e#25312#25318#0#HTML" expanded="true" />
                 <element signature="e#25624#25630#0#HTML" expanded="true" />
+                <element signature="e#25648#25654#0#HTML" expanded="true" />
                 <element signature="e#25963#25969#0#HTML" expanded="true" />
+                <element signature="e#26399#26405#0#HTML" expanded="true" />
                 <element signature="e#26309#26315#0#HTML" expanded="true" />
-                <element signature="e#26621#26627#0#HTML" expanded="true" />
-                <element signature="e#25239#25245#0#HTML" expanded="true" />
                 <element signature="e#25252#25258#0#HTML" expanded="true" />
                 <element signature="e#25610#25616#0#HTML" expanded="true" />
                 <element signature="e#25925#25931#0#HTML" expanded="true" />
@@ -391,10 +387,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1940" />
-    <option name="height" value="1100" />
+    <option name="x" value="-8" />
+    <option name="y" value="2" />
+    <option name="width" value="1934" />
+    <option name="height" value="1036" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -503,20 +499,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590802959530</updated>
-      <workItem from="1590802960902" duration="19865000" />
+      <workItem from="1590802960902" duration="21884000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19865000" />
+    <option name="totallyTimeSpent" value="21884000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1552" height="880" extended-state="0" />
+    <frame x="-8" y="2" width="1934" height="1036" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.14544237" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.11579509" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.328877" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -826,20 +822,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="444" column="80" selection-start-line="444" selection-start-column="80" selection-end-line="444" selection-end-column="80" />
+        <state relative-caret-position="670">
+          <caret line="449" lean-forward="true" selection-start-line="449" selection-end-line="449" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="e#24652#24658#0#HTML" expanded="true" />
             <element signature="e#24959#24965#0#HTML" expanded="true" />
-            <element signature="e#25312#25318#0#HTML" expanded="true" />
             <element signature="e#25624#25630#0#HTML" expanded="true" />
+            <element signature="e#25648#25654#0#HTML" expanded="true" />
             <element signature="e#25963#25969#0#HTML" expanded="true" />
+            <element signature="e#26399#26405#0#HTML" expanded="true" />
             <element signature="e#26309#26315#0#HTML" expanded="true" />
-            <element signature="e#26621#26627#0#HTML" expanded="true" />
-            <element signature="e#25239#25245#0#HTML" expanded="true" />
             <element signature="e#25252#25258#0#HTML" expanded="true" />
             <element signature="e#25610#25616#0#HTML" expanded="true" />
             <element signature="e#25925#25931#0#HTML" expanded="true" />

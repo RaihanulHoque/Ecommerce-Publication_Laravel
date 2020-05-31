@@ -413,15 +413,15 @@ z-index: 999999">
                         </a>
                         <ul>
                             <li>
-                                <a href="{{route('')}}">
+                                <a href="{{route('add-writter')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    &nbsp; Manage Writters
+                                    <span class="link-title">&nbsp;Add Writters</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="cards.html">
+                                <a href="{{route('manage-writters')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="link-title">&nbsp;Add Writters</span>
+                                    &nbsp; Manage Writters
                                 </a>
                             </li>
                         </ul>
@@ -434,20 +434,20 @@ z-index: 999999">
                         </a>
                         <ul>
                             <li>
-                                <a href="{{route('')}}">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Manage Publishers
-                                </a>
-                            </li>
-                            <li>
-                                <a href="cards.html">
+                                <a href="{{route('add-publisher')}}">
                                     <i class="fa fa-angle-right"></i>
                                     <span class="link-title">&nbsp;Add Publisher</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{route('manage-publishers')}}">
+                                    <i class="fa fa-angle-right"></i>
+                                    &nbsp; Manage Publishers
+                                </a>
+                            </li>
                         </ul>
                     </li>
-                    
+
                     <li class="dropdown_menu">
                         <a href="javascript:;">
                             <i class="fa fa-anchor"></i>
