@@ -405,6 +405,8 @@ z-index: 999999">
                             <span class="link-title menu_hide">&nbsp;Dashboard</span>
                         </a>
                     </li>
+                    <?php
+                    /*
                     <li class="dropdown_menu">
                         <a href="javascript:;">
                             <i class="fa fa-anchor"></i>
@@ -447,7 +449,7 @@ z-index: 999999">
                             </li>
                         </ul>
                     </li>
-
+                    */ ?>
                     <li class="dropdown_menu">
                         <a href="javascript:;">
                             <i class="fa fa-anchor"></i>
@@ -455,11 +457,26 @@ z-index: 999999">
                             <span class="fa arrow menu_hide"></span>
                         </a>
                         <ul>
-                            <li>
-                                <a href="general_components.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Book Categories
+                            <li class="dropdown_menu">
+                                <a href="javascript:;">
+                                    <i class="fa fa-anchor"></i>
+                                    <span class="link-title menu_hide">Book Categories</span>
+                                    <span class="fa arrow menu_hide"></span>
                                 </a>
+                                <ul>
+                                    <li>
+                                        <a href="{{route('add-category')}}">
+                                            <i class="fa fa-angle-right"></i>
+                                            <span class="link-title">&nbsp;Add Category</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href=" #">
+                                            <i class="fa fa-angle-right"></i>
+                                            <span class="link-title">&nbsp;Manage Category</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="cards.html">

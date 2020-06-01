@@ -20,6 +20,14 @@ Route::get('/',[
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home',[
+    'uses'  => 'HomeController@index',
+    'as'    => 'home'
+]);
 
+Route::get('/category/add-category',[
+   'uses'   => 'CategoryController@addCategory',
+   'as'     => 'add-category'
+]);
 
