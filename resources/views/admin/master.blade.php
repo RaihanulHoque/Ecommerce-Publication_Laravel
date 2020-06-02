@@ -18,6 +18,13 @@
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/switchery/css/switchery.min.css"/>
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/new_dashboard.css"/>
     <link type="text/css" rel="stylesheet" href="#" id="skin_change"/>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body class="body">
@@ -45,7 +52,7 @@ z-index: 999999">
         <nav class="navbar navbar-static-top">
             <div class="container-fluid m-0">
                 <a class="navbar-brand" href="index.html">
-                    <h4><img src="{{asset('/')}}admin/img/logo1.ico" class="admin_img" alt="logo"> PBS ADMIN</h4>
+                    <h4><img src="{{asset('/')}}admin/img/logo.png" class="admin_img" alt="logo"> PBS ADMIN</h4>
                 </a>
                 <div class="menu mr-sm-auto">
                     <span class="toggle-left" id="menu-toggle">
@@ -457,27 +464,6 @@ z-index: 999999">
                             <span class="fa arrow menu_hide"></span>
                         </a>
                         <ul>
-                            <li class="dropdown_menu">
-                                <a href="javascript:;">
-                                    <i class="fa fa-anchor"></i>
-                                    <span class="link-title menu_hide">Book Categories</span>
-                                    <span class="fa arrow menu_hide"></span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="{{route('add-category')}}">
-                                            <i class="fa fa-angle-right"></i>
-                                            <span class="link-title">&nbsp;Add Category</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href=" #">
-                                            <i class="fa fa-angle-right"></i>
-                                            <span class="link-title">&nbsp;Manage Category</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li>
                                 <a href="cards.html">
                                     <i class="fa fa-angle-right"></i>
@@ -485,9 +471,9 @@ z-index: 999999">
                                 </a>
                             </li>
                             <li>
-                                <a href="transitions.html">
+                                <a href="{{route('add-category')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    &nbsp; Transitions
+                                    &nbsp; Book Categories
                                 </a>
                             </li>
                             <li>
@@ -592,9 +578,9 @@ z-index: 999999">
                         </a>
                         <ul>
                             <li>
-                                <a href="widgets1.html">
+                                <a href=" {{route('products')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    &nbsp; Widgets 1
+                                    PRODUCTS
                                 </a>
                             </li>
                             <li>
@@ -1418,68 +1404,16 @@ z-index: 999999">
             </div>
         </div>
     </div>
-    <!-- /#content -->
-    <div id="right">
-        <div class="right_content">
-            <div class="well-small dark m-t-15">
-                <div class="row m-0">
-                    <div class="col-lg-12 p-d-0">
-                        <div class="skinmulti_btn" onclick="javascript:loadjscssfile('blue_black_skin.html','css')">
-                            <div class="skin_blue skin_size b_t_r"></div>
-                            <div class="skin_blue_border skin_shaddow skin_size b_b_r"></div>
-                        </div>
-                        <div class="skinmulti_btn" onclick="javascript:loadjscssfile('green_black_skin.html','css')">
-                            <div class="skin_green skin_size b_t_r"></div>
-                            <div class="skin_green_border skin_shaddow skin_size b_b_r"></div>
-                        </div>
-                        <div class="skinmulti_btn" onclick="javascript:loadjscssfile('purple_black_skin.html','css')">
-                            <div class="skin_purple skin_size b_t_r"></div>
-                            <div class="skin_purple_border skin_shaddow skin_size b_b_r"></div>
-                        </div>
-                        <div class="skinmulti_btn" onclick="javascript:loadjscssfile('orange_black_skin.html','css')">
-                            <div class="skin_orange skin_size b_t_r"></div>
-                            <div class="skin_orange_border skin_shaddow skin_size b_b_r"></div>
-                        </div>
-                        <div class="skinmulti_btn" onclick="javascript:loadjscssfile('red_black_skin.html','css')">
-                            <div class="skin_red skin_size b_t_r"></div>
-                            <div class="skin_red_border skin_shaddow skin_size b_b_r"></div>
-                        </div>
-                        <div class="skinmulti_btn" onclick="javascript:loadjscssfile('mint_black_skin.html','css')">
-                            <div class="skin_mint skin_size b_t_r"></div>
-                            <div class="skin_mint_border skin_shaddow skin_size b_b_r"></div>
-                        </div>
-                        <!--</div>-->
-                        <div class="skin_btn skinsingle_btn skin_blue b_r height_40 skin_shaddow"
-                             onclick="javascript:loadjscssfile('blue_skin.html','css')"></div>
-                        <div class="skin_btn skinsingle_btn skin_green b_r height_40 skin_shaddow"
-                             onclick="javascript:loadjscssfile('green_skin.html','css')"></div>
-                        <div class="skin_btn skinsingle_btn skin_purple b_r height_40 skin_shaddow"
-                             onclick="javascript:loadjscssfile('purple_skin.html','css')"></div>
-                        <div class="skin_btn  skinsingle_btn skin_orange b_r height_40 skin_shaddow"
-                             onclick="javascript:loadjscssfile('orange_skin.html','css')"></div>
-                        <div class="skin_btn skinsingle_btn skin_red b_r height_40 skin_shaddow"
-                             onclick="javascript:loadjscssfile('red_skin.html','css')"></div>
-                        <div class="skin_btn skinsingle_btn skin_mint b_r height_40 skin_shaddow"
-                             onclick="javascript:loadjscssfile('mint_skin.html','css')"></div>
-                    </div>
-                    <div class="col-lg-12 text-center m-t-15">
-                        <button class="btn btn-dark button-rounded"
-                                onclick="javascript:loadjscssfile('black_skin.html','css')">Dark
-                        </button>
-                        <button class="btn btn-secondary button-rounded default_skin"
-                                onclick="javascript:loadjscssfile('default.html','css')">Default
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- /#wrap -->
 <!-- global scripts-->
 <script type="text/javascript" src="{{asset('/')}}admin/js/components.js"></script>
 <script type="text/javascript" src="{{asset('/')}}admin/js/custom.js"></script>
 <!-- global scripts end-->
+
+
+
+
 <script type="text/javascript" src="{{asset('/')}}admin/vendors/slimscroll/js/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="{{asset('/')}}admin/vendors/raphael/js/raphael.min.js"></script>
 <script type="text/javascript" src="{{asset('/')}}admin/vendors/d3/js/d3.min.js"></script>
@@ -1498,6 +1432,14 @@ z-index: 999999">
 <script type="text/javascript" src="{{asset('/')}}admin/vendors/countUp.js/js/countUp.min.js"></script>
 <!--end of plugin scripts-->
 <script type="text/javascript" src="{{asset('/')}}admin/js/pages/new_dashboard.js"></script>
+
+<script src="{{asset('/')}}admin/js/jquery.validate.js"></script>
+<script src="{{asset('/')}}admin/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('/')}}admin/js/bootstrap.min.js"></script>
+<script src="{{asset('/')}}admin/js/dataTables.bootstrap4.min.js"></script>
+
+
+
 
 </body>
 

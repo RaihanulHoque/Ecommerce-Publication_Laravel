@@ -29,6 +29,11 @@ class CreateCategoriesTable extends Migration
 
             $table->timestamps();
         });
+
+        Schema::table('updated_by', function (Blueprint $table) {
+            // change() tells the Schema builder that we are altering a table
+            $table->integer('updated_by')->unsigned()->nullable()->change();
+        });
     }
 
     /**

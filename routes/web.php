@@ -31,3 +31,18 @@ Route::get('/category/add-category',[
    'as'     => 'add-category'
 ]);
 
+
+Route::resource('ajax-book-categories','CategoryController');
+Route::get('/admin/book-categories',[
+    'uses'  =>  'CategoryController@index',
+    'as'    =>  'book-categories'
+]);
+
+Route::resource('ajaxproducts','ProductAjaxController');
+Route::get('/test/products',[
+    'uses'  => 'ProductAjaxController@index',
+    'as'    => 'products'
+]);
+
+
+

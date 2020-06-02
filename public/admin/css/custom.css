@@ -1129,10 +1129,18 @@ body.error .logo h1 {
   color: #ccc; }
 
 .modal-backdrop.show {
-  z-index: 99999 !important; }
+  z-index: 100 !important; }
 
 .modal {
   z-index: 999999; }
+
+.modal.show .modal-dialog {
+    margin-top: 6rem;
+}
+
+#DataTables_Table_0{
+    width: 100% !important;
+}
 
 /* ===================End of common css ==================*/
 /* ============================ 6.Users section ===================*/

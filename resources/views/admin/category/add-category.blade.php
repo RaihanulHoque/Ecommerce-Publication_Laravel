@@ -54,7 +54,7 @@
                             Add Category
                         </div>
                         <div class="card-body m-t-35">
-                            <form action="#" class="form-horizontal  login_validator" id="form_block_validator">
+                            <form action="{{route('new-category')}}" class="form-horizontal  login_validator" id="form_block_validator">
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-xl-4 text-xl-right">
@@ -63,9 +63,9 @@
                                     <div class="col-xl-4">
                                         <select name="parent" id="parent" class="form-control select2">
                                             <option value="">Select Parent</option>
-                                            <option value="option1">Tennis</option>
-                                            <option value="option2">Football</option>
-                                            <option value="option3">Golf</option>
+                                            <option value="1">Tennis</option>
+                                            <option value="2">Football</option>
+                                            <option value="3">Golf</option>
                                         </select>
                                     </div>
                                 </div>
