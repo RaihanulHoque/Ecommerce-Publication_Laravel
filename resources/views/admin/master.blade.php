@@ -471,7 +471,7 @@ z-index: 999999">
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('add-category')}}">
+                                <a href="{{route('book-categories')}}">
                                     <i class="fa fa-angle-right"></i>
                                     &nbsp; Book Categories
                                 </a>

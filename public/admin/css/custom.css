@@ -1141,7 +1141,9 @@ body.error .logo h1 {
 #DataTables_Table_0{
     width: 100% !important;
 }
-
+.smallLetter{
+    text-transform: lowercase !important;
+}
 /* ===================End of common css ==================*/
 /* ============================ 6.Users section ===================*/
 .input_field_sections {
