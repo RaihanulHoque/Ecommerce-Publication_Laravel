@@ -144,10 +144,13 @@ class WriterController extends Controller
             'image'         =>$image_name,
             'image_origin_name'=> $image_origin_name,
             'updated_by'    =>Auth::id(),
-            'updated_at'    =>time()
+           // 'updated_at'    =>time()
         );
-            
-          Writer::WhereId($id)->update($form_data);
+
+        DB::table('writers')->where([
+            ['id', '=', $id],
+        ])->update($form_data);
+         //Writer::WhereId($id)->update($form_data);
         //return redirect('admin.writer.index')->with('success', 'Writer Updated Successfully!');
         return redirect('crud')->with('success', 'Writer Updated Successfully!');
 
