@@ -33,7 +33,20 @@ class CategoryController extends Controller
                 ->make(true);
         }
 
-        return view('admin/category/category');
+
+
+
+        /*
+         $symptoms = DB::table('symptoms')->where([
+            ['status', '=', '1'],
+        ])->get();
+        */
+        $categories = Category::all();
+
+        return view('admin/category/category', compact('categories'));
+
+
+        //return view('admin/category/category');
     }
 
     /**

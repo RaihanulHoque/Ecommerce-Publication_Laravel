@@ -61,7 +61,7 @@
                                         <label for="sport" class="col-form-label">Parent Category </label>
                                     </div>
                                     <div class="col-xl-4">
-                                        <select name="parent" id="parent" class="form-control select2">
+                                        <select name="parent" id="parent" class="validate[required] form-control select2">
                                             <option value="">Select Parent</option>
                                             <option value="1">Tennis</option>
                                             <option value="2">Football</option>
@@ -72,10 +72,10 @@
 
                                 <div class="form-group row">
                                     <div class="col-lg-4  text-lg-right">
-                                        <label for="required2" class="col-form-label">Category Name (Eng.)*</label>
+                                        <label for="required" class="validate[required] col-form-label">Category Name (Eng.)*</label>
                                     </div>
                                     <div class="col-lg-4">
-                                        <input type="text" id="required2" name="title" class="form-control" required>
+                                        <input type="text" id="required" name="title" class="validate[required] form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -91,7 +91,7 @@
                                         <label for="email2" class="col-form-label">Category Slug URL*</label>
                                     </div>
                                     <div class="col-lg-4">
-                                        <input type="text" id="slug" name="slug" class="form-control">
+                                        <input type="text" id="slug" name="slug" class="validate[required] form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">

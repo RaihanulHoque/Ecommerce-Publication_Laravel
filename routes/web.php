@@ -44,5 +44,11 @@ Route::get('/test/products',[
     'as'    => 'products'
 ]);
 
+Route::get('/admin/writers',[
+    'uses'  => 'WriterController@index',
+    'as'    => 'writers'
+]);
+
+Route::resource('crud','WriterController');
 
 

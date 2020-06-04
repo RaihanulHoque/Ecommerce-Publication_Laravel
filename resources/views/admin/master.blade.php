@@ -467,7 +467,7 @@ z-index: 999999">
                             <li>
                                 <a href="cards.html">
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="link-title">&nbsp;Books</span>
+                                    <span class="link-title">Manage Books</span>
                                 </a>
                             </li>
                             <li>
@@ -477,9 +477,9 @@ z-index: 999999">
                                 </a>
                             </li>
                             <li>
-                                <a href="buttons.html">
+                                <a href="{{route('writers')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    &nbsp; Buttons
+                                    &nbsp; Manage Writers
                                 </a>
                             </li>
                             <li>
@@ -1410,9 +1410,6 @@ z-index: 999999">
 <script type="text/javascript" src="{{asset('/')}}admin/js/components.js"></script>
 <script type="text/javascript" src="{{asset('/')}}admin/js/custom.js"></script>
 <!-- global scripts end-->
-
-
-
 
 <script type="text/javascript" src="{{asset('/')}}admin/vendors/slimscroll/js/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="{{asset('/')}}admin/vendors/raphael/js/raphael.min.js"></script>

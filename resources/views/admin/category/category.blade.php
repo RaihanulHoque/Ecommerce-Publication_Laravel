@@ -6,7 +6,7 @@
 
 </head>
 @section('title')
-    Test Product CRUD system
+    PBS Admin | Book Category Management
 @endsection
 
 @section('body')
@@ -16,7 +16,7 @@
                 <div class="col-sm-5 col-lg-6">
                     <h4 class="nav_top_align">
                         <i class="fa fa-pencil"></i>
-                        Products
+                        Book Categories
                     </h4>
                 </div>
                 <div class="col-sm-7 col-lg-6">
@@ -28,9 +28,9 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#">Products</a>
+                            <a href="{{route('book-categories')}}">Book Categories</a>
                         </li>
-                        <li class="active breadcrumb-item">Add Product</li>
+                        <li class="active breadcrumb-item">Manage</li>
                     </ol>
                 </div>
             </div>
@@ -44,12 +44,12 @@
                     <div class="card">
                         <div class="card-header bg-white">
                             <i class="fa fa-file-text-o"></i>
-                            Add Product
+                            Manage Book Categories
                         </div>
 
                         <div class="card-body">
 
-                            <a class="btn btn-success  m-b-20 side-right" href="javascript:void(0)" id="createNewProduct"> Create New Product</a>
+                            <a class="btn btn-success  m-b-20 side-right" href="javascript:void(0)" id="createNewCategory"> Add New Category</a>
 
                             <table class="table table-bordered data-table">
 
@@ -60,9 +60,9 @@
                                     <th>No</th>
 
                                     <th>Parent</th>
-                                    <th>Title</th>
-                                    <th>Title Bangla</th>
-                                    <th>SLUG</th>
+                                    <th>Title Eng.</th>
+                                    <th>Title Bang.</th>
+                                    <th>Slug URL</th>
 
                                     <th>Details</th>
 
@@ -84,80 +84,66 @@
                             <div class="modal-dialog">
 
                                 <div class="modal-content">
-
                                     <div class="modal-header">
-
                                         <h4 class="modal-title" id="modelHeading"></h4>
-
                                     </div>
-
                                     <div class="modal-body">
 
-                                        <form id="productForm" name="productForm" class="form-horizontal">
-
-                                            <input type="hidden" name="product_id" id="product_id">
+                                        <form id="categoryForm" name="categoryForm" class="form-horizontal">
+                                            <input type="hidden" name="category_id" id="category_id">
 
                                             <div class="form-group">
-                                                <label for="name" class="col-sm-2 control-label">Parent</label>
+                                                <label for="name" class="col-sm-12 control-label">Parent Category</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" id="parent" name="parent" placeholder="Enter Name" value="" maxlength="50" required="">
+                                                    <select name="parent" id="parent" class="validate[required] form-control select2">
+                                                        <option value="0">Select Parent</option>
+                                                        @foreach($categories as $category)
+                                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                                        @endforeach
+
+                                                    </select>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="name" class="col-sm-2 control-label">Title</label>
+                                                <label for="name" class="col-sm-12 control-label">Category Name (Eng.)*</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Name" value="" maxlength="50" required="">
+                                                    <input type="text" class="validate[required] form-control" id="title" name="title" placeholder="Enter Name" value="" maxlength="200" required="">
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="name" class="col-sm-2 control-label">Title Bangla</label>
+                                                <label for="title_bang" class="col-sm-12 control-label">Category Name (Bang.)*</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" id="title_bang" name="title_bang" placeholder="Enter Bangla Name" value="" maxlength="50" required="">
+                                                    <input type="text" class="validate[required] form-control" id="title_bang" name="title_bang" placeholder="বাংলা নাম" value="" maxlength="200" required="">
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="name" class="col-sm-2 control-label">Slug URL</label>
+                                                <label for="slug" class="col-sm-12 control-label">Category Slug URL (use-dash-for-space) *</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter Name" value="" maxlength="50" required="">
+                                                    <input type="text" class="validate[required] form-control smallLetter" id="slug" name="slug" placeholder="slug-url (i.e. শিশু-কিশোর-বই)" value="" maxlength="200" required="">
                                                 </div>
                                             </div>
 
-
                                             <div class="form-group">
-
-                                                <label class="col-sm-2 control-label">Details</label>
-
+                                                <label class="col-sm-12 control-label">Short Description</label>
                                                 <div class="col-sm-12">
-
                                                     <textarea id="detail_info" name="detail_info" required="" placeholder="Enter Details" class="form-control"></textarea>
-
                                                 </div>
-
                                             </div>
-
-
 
                                             <div class="col-sm-offset-2 col-sm-10">
-
                                                 <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
-
                                                 </button>
-
                                             </div>
 
                                         </form>
 
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -186,24 +172,27 @@
                 ]
             });
 
-            $('#createNewProduct').click(function () {
-                $('#saveBtn').val("create-product");
-                $('#product_id').val('');
-                $('#productForm').trigger("reset");
-                $('#modelHeading').html("Create New Product");
+            $('#createNewCategory').click(function () {
+                $('#saveBtn').val("create-Category");
+                $('#category_id').val('');
+                $('#categoryForm').trigger("reset");
+                $('#modelHeading').html("Create New Category");
                 $('#ajaxModel').modal('show');
             });
 
 
-            $('body').on('click', '.editProduct', function () {
-                var product_id = $(this).data('id');
-                $.get("{{ route('ajaxproducts.index') }}" +'/' + product_id +'/edit', function (data) {
-                    $('#modelHeading').html("Edit Product");
+            $('body').on('click', '.editCategory', function () {
+                var category_id = $(this).data('id');
+                $.get("{{ route('ajax-book-categories.index') }}" +'/' + category_id +'/edit', function (data) {
+                    $('#modelHeading').html("Edit Category");
                     $('#saveBtn').val("edit-user");
                     $('#ajaxModel').modal('show');
-                    $('#product_id').val(data.id);
-                    $('#name').val(data.name);
-                    $('#detail').val(data.detail);
+                    $('#category_id').val(data.id);
+                    $('#parent').val(data.parent);
+                    $('#title').val(data.title);
+                    $('#title_bang').val(data.title_bang);
+                    $('#slug').val(data.slug);
+                    $('#detail_info').val(data.detail_info);
                 })
             });
 
@@ -211,12 +200,12 @@
                 e.preventDefault();
                 $(this).html('Sending..');
                 $.ajax({
-                    data: $('#productForm').serialize(),
+                    data: $('#categoryForm').serialize(),
                     url: "{{ route('ajax-book-categories.store') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function (data) {
-                        $('#productForm').trigger("reset");
+                        $('#categoryForm').trigger("reset");
                         $('#ajaxModel').modal('hide');
                         table.draw();
                     },
@@ -227,12 +216,12 @@
                 });
             });
 
-            $('body').on('click', '.deleteProduct', function () {
-                var product_id = $(this).data("id");
+            $('body').on('click', '.deleteCategory', function () {
+                var category_id = $(this).data("id");
                 confirm("Are You sure want to delete !");
                 $.ajax({
                     type: "DELETE",
-                    url: "{{ route('ajax-book-categories.store') }}"+'/'+product_id,
+                    url: "{{ route('ajax-book-categories.store') }}"+'/'+category_id,
                     success: function (data) {
                         table.draw();
                     },
@@ -246,3 +235,4 @@
     </script>
 
 @endsection
+

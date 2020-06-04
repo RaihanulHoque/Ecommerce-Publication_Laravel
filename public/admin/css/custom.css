@@ -1144,6 +1144,12 @@ body.error .logo h1 {
 .smallLetter{
     text-transform: lowercase !important;
 }
+.fLeft{
+    float: left;
+}
+.lClear{
+    clear: left;
+}
 /* ===================End of common css ==================*/
 /* ============================ 6.Users section ===================*/
 .input_field_sections {

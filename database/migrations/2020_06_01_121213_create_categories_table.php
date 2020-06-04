@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('title');
             $table->string('title_bang');
             $table->string('slug')->unique();
-            $table->text('detail_info');
+        $table->text('detail_info');
             $table->integer('created_by');
             $table->integer('updated_by');
 
