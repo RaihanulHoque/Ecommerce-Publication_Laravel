@@ -20,35 +20,93 @@ Route::get('/',[
 
 Auth::routes();
 
+//SLUG Checking for admin panel entry
+Route::get('pages/check_slug', 'PagesController@check_slug')
+    ->name('pages.check_slug');
+
+
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home',[
     'uses'  => 'HomeController@index',
     'as'    => 'home'
 ]);
 
-Route::get('/category/add-category',[
-   'uses'   => 'CategoryController@addCategory',
-   'as'     => 'add-category'
+
+//Route::resource('admin.categories','CategoryController');
+Route::resource('admin/categories','CategoryController');
+//Categories Management
+Route::get('/admin/categories',[
+    'uses'  => 'CategoryController@index',
+    'as'    => 'main-categories'
+]);
+Route::get('/admin/categories/delete/{id}',[
+    'uses'  => 'CategoryController@destroy',
+    'as'    => 'del-main-category'
+]);
+Route::post('/admin/categories/del-main-category',[
+    'uses'  => 'CategoryController@delete',
+    'as'    => 'del-main-category'
 ]);
 
-
-Route::resource('ajax-book-categories','CategoryController');
-Route::get('/admin/book-categories',[
-    'uses'  =>  'CategoryController@index',
-    'as'    =>  'book-categories'
+//Sub-Categories
+Route::resource('admin/sub-categories','SubCategoryController');
+Route::get('/admin/sub-categories',[
+    'uses'  => 'SubCategoryController@index',
+    'as'    => 'sub-categories'
 ]);
 
-Route::resource('ajaxproducts','ProductAjaxController');
-Route::get('/test/products',[
-    'uses'  => 'ProductAjaxController@index',
-    'as'    => 'products'
+Route::get('/admin/sub-categories/delete/{id}',[
+    'uses'  => 'SubCategoryController@destroy',
+    'as'    => 'del-sub-category'
+]);
+Route::post('/admin/sub-categories/del-sub-category',[
+    'uses'  => 'SubCategoryController@delete',
+    'as'    => 'del-sub-category'
 ]);
 
+//Second-Sub-Categories
+Route::resource('admin/sec-sub-categories','SecondSubCategoryController');
+Route::get('/admin/sec-sub-categories',[
+    'uses'  => 'SecondSubCategoryController@index',
+    'as'    => 'sec-sub-categories'
+]);
+Route::get('/admin/sec-sub-categories/delete/{id}',[
+    'uses'  => 'SecondSubCategoryController@destroy',
+    'as'    => 'del-sec-sub-category'
+]);
+Route::post('/admin/sec-sub-categories/del-sec-sub-category',[
+    'uses'  => 'SecondSubCategoryController@delete',
+    'as'    => 'del-sec-sub-category'
+]);
+
+//Writer Management
 Route::get('/admin/writers',[
     'uses'  => 'WriterController@index',
     'as'    => 'writers'
 ]);
-
+Route::get('/admin/writers/delete/{id}',[
+    'uses'  => 'WriterController@destroy',
+    'as'    => 'del-writer'
+]);
+Route::post('/writer/del-writer',[
+    'uses'  => 'WriterController@delete',
+    'as'    => 'del-writer'
+]);
 Route::resource('crud','WriterController');
 
+
+//Publications Management
+Route::resource('admin/publications','PublicationController');
+Route::get('/admin/publications',[
+    'uses'  => 'PublicationController@index',
+    'as'    => 'publications'
+]);
+Route::get('/admin/publication/delete/{id}',[
+    'uses'  => 'PublicationController@destroy',
+    'as'    => 'del-publication'
+]);
+Route::post('/admin/publication/del-main-category',[
+    'uses'  => 'PublicationController@delete',
+    'as'    => 'del-publication'
+]);
 

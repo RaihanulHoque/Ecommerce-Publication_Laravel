@@ -18,14 +18,17 @@ class CreateWritersTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('title_bang');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->text('detail_info');
             $table->string('image')->nullable();
             $table->string('image_origin_name')->nullable();
-
+            $table->integer('created_by');
+            $table->integer('status')->default('1');
+            $table->integer('updated_by')->nullable();
+            $table->index('slug', 'idx_writer_slug');
             $table->index('title', 'idx_writer_name');
             $table->index('title_bang', 'idx_writer_name_bang');
             $table->timestamps();

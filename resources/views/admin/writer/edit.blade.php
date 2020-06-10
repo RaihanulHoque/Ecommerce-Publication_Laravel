@@ -18,14 +18,7 @@
 
     <!--plugin styles-->
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/select2/css/select2.min.css" />
-    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/datatables/css/scroller.bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/datatables/css/colReorder.bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/datatables/css/dataTables.bootstrap.css" />
-    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/dataTables.bootstrap.css" />
     <!-- end of plugin styles -->
-    <!--Page level styles-->
-    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/tables.css" />
-
     <!--Page level styles-->
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/form_validations.css" />
     <!-- end of page level styles -->
@@ -66,9 +59,12 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#">Writers</a>
+                            <a href="{{route('writers')}}">Writers</a>
                         </li>
-                        <li class="active breadcrumb-item">Manage</li>
+                        <li class="breadcrumb-item">
+                            <a href="{{route('crud.show', $data->id)}}">{{ $data->title}}</a>
+                        </li>
+                        <li class="active breadcrumb-item">Update</li>
                     </ol>
                 </div>
             </div>
@@ -81,11 +77,11 @@
                 <div class="col-12 data_tables">
                     <div class="card ">
                         <div class="card-header bg-white">
-                            <i class="fa fa-table"></i> View Writer Detail
+                            <i class="fa fa-table"></i> Update Writer Information
                         </div>
                         <div class="card-body ">
                             <div align="right">
-                                <a href="{{ route('crud.index') }}" class="btn btn-default">Back</a>
+                                <a href="{{ route('crud.index') }}" class="btn btn-primary">Back</a>
                             </div>
                             <br />
                             <form  id="categoryForm" method="post" action="{{ route('crud.update', $data->id) }}" enctype="multipart/form-data" name="categoryForm" class="form-horizontal">
@@ -105,13 +101,6 @@
                                     <label for="title_bang" class="col-sm-12 control-label">Writer Name (Bang.)*</label>
                                     <div class="col-sm-12">
                                         <input type="text" class="validate[required] form-control" id="title_bang" name="title_bang" placeholder="বাংলা নাম" value="{{ $data->title_bang}}" maxlength="200" required="">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="slug" class="col-sm-12 control-label">Writer Name Slug URL (use-dash-for-space) *</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="validate[required] form-control smallLetter" id="slug" name="slug" placeholder="slug-url (i.e. হুমায়ূন-আহমেদ)" value="{{ $data->slug}}" maxlength="200" required="">
                                     </div>
                                 </div>
 

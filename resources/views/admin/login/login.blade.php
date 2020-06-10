@@ -3,7 +3,7 @@
 
 <!-- Mirrored from demo.admireadmin.com/admire2/login2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 05:36:44 GMT -->
 <head>
-    <title>Login 2 | Admire</title>
+    <title>PBS Admin | Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="{{asset('/')}}admin/img/logo1.ico"/>
     <!--Global styles -->
@@ -14,7 +14,7 @@
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/bootstrapvalidator/css/bootstrapValidator.min.css"/>
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/wow/css/animate.css"/>
     <!--End of Plugin styles-->
-    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/login2.css"/>
+    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/login1.css"/>
 </head>
 <body class="login_background">
 <div class="preloader" style=" position: fixed;
@@ -35,86 +35,96 @@ z-index: 999999">
         <img src="{{asset('/')}}admin/img/loader.gif" style=" width: 40px;" alt="loading...">
     </div>
 </div>
-<div class="container wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+
+
+<div class="container wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="2s">
     <div class="row">
-        <div class="col-10 mx-auto">
+        <div class="col-lg-12 col-md-12 col-sm-12 login_top_bottom">
             <div class="row">
-                <div class="col-lg-4  col-md-8 col-sm-12  mx-auto login_image login_section login_section_top">
+                <div class="col-lg-5  col-md-8  col-sm-12 mx-auto">
                     <div class="login_logo login_border_radius1">
-                        <h3 class="text-center text-white">
-                            <img src="{{asset('/')}}admin/img/logow2.png" alt="josh logo" class="admire_logo">
+                        <h3 class="text-center">
+                            <img src="{{asset('/')}}admin/img/logo.png" alt="PBS logo" class="admire_logo">
+                            <span class="text-white"> PBS Admin Login</span>
                         </h3>
                     </div>
-                    <div class="row m-t-20">
-                        <div class="col-12">
-                            <a class="text-success m-r-20 font_18">LOG IN</a>
-                            <a href="{{asset('/')}}admin/register2.html" class="text-white font_18">SIGN UP</a>
-                        </div>
-                    </div>
-                    <div class="m-t-15">
-                        <form role="form" action="{{ route('login') }}" id="login_validator" method="post">
+                    <div class="bg-white login_content login_border_radius">
+                        <form action="{{ route('login') }}" id="login_validator" method="post" class="login_validator">
                             @csrf
                             <div class="form-group">
-                                <label for="email" class="col-form-label text-white"> E-mail</label>
-                                <!--<input type="text" class="form-control b_r_20" id="email" name="email" placeholder="E-mail"> -->
+                                <label for="email" class="col-form-label"> E-mail</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon input_email"><i
+                                            class="fa fa-envelope text-primary"></i></span>
+                                    <input id="email" type="email" class="form-control  form-control-md @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                <input id="email" type="email" class="form-control b_r_20 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="col-form-label text-white">Password</label>
-                                <!-- type="password" class="form-control b_r_20" id="password" name="password" placeholder="Password"> -->
-
-                                <input id="password" type="password" class="form-control b_r_20 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="row m-t-15">
-                                <div class="col-12">
-                                    <label class="custom-control custom-checkbox">
-                                        <!--<input type="checkbox" class="custom-control-input form-control">-->
-                                        <input class="custom-control-input form-control" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        <span class="custom-control-indicator"></span>
-                                        <a class="custom-control-description text-white">Keep me logged in</a>
-
-
-
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
-                                        </label>
-                                    </label>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="text-center login_bottom">
-                                <button type="submit" class="btn btn-mint btn-block b_r_20 m-t-10 m-r-20">
-                                    {{ __('Login') }}
-                                </button>
+                            <!--</h3>-->
+                            <div class="form-group">
+                                <label for="password" class="col-form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon addon_password"><i
+                                            class="fa fa-lock text-primary"></i></span>
+                                    <input id="password" type="password" class="form-control form-control-md @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="m-t-15 text-center">
-                                <a href="{{ route('password.request') }}" class="text-white">Forgot password ?</a>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input type="submit" value="Log In" class="btn btn-primary btn-block login_button">
+                                    </div>
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                    @endif
+                                    <div class="m-t-15 text-center">
+                                        <a href="{{ route('password.request') }}" class="text-white">Forgot password ?</a>
+                                    </div>
+                                </div>
                             </div>
+
+
                         </form>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="custom-control custom-checkbox">
+                                        <span class="custom-control-indicator"></span>
+                                        <a class="custom-control-description">Keep me logged in</a>
+                                        <input class="custom-control-input form-control" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            @if (Route::has('register'))
+                                <label class="col-form-label">Don't you have an Account? </label>
+                                <a href="{{ route('register') }}" class="text-primary font_18">SIGN UP</a>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- global js -->
 <script type="text/javascript" src="{{asset('/')}}admin/js/jquery.min.js"></script>
 <script type="text/javascript" src="{{asset('/')}}admin/js/popper.js"></script>

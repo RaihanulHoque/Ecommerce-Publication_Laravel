@@ -16,6 +16,14 @@
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/portlet.css"/>
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/advanced_components.css"/>
 
+    <!--Page level styles-->
+    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/tables.css" />
+
+    <!--Page level styles-->
+    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/form_validations.css" />
+     <!-- end of page level styles -->
+
+
     <!--plugin styles-->
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/select2/css/select2.min.css" />
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/datatables/css/scroller.bootstrap.min.css" />
@@ -23,12 +31,6 @@
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/vendors/datatables/css/dataTables.bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/dataTables.bootstrap.css" />
     <!-- end of plugin styles -->
-    <!--Page level styles-->
-    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/tables.css" />
-
-    <!--Page level styles-->
-    <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/form_validations.css" />
-     <!-- end of page level styles -->
 </head>
 @extends('admin.master')
 
@@ -76,8 +78,9 @@
     <div class="outer">
         <div class="inner bg-container">
             <div class="row">
-
                 <div class="col-12 data_tables">
+
+                <div class="col-Select inputs12 data_tables">
                     <div class="card ">
                         <div class="card-header bg-white">
                             <i class="fa fa-table"></i> Manage Writers
@@ -86,54 +89,70 @@
 
                             <a class="btn btn-success adv_cust_mod_btn m-b-20" data-toggle="modal"
                                data-href="#responsive" href="#responsive">Add New Writer</a>
-
-                            <table id="example3" class="display table table-stripped table-bordered">
+                            <table id="example2" class="display table table-stripped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Photo</th>
-                                    <th>Name Eng.</th>
-                                    <th>Name Bang.</th>
-                                    <th>SLUG URL</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Action</th>
+                                    <th width="2%;">Sl.</th>
+                                    <th width="10%;">Photo</th>
+                                    <th width="15%;">Name Eng.</th>
+                                    <th width="15%;">Name Bang.</th>
+                                    <th width="15%;">SLUG URL</th>
+                                    <th width="15%;">Phone</th>
+                                    <th width="15%;">Email</th>
+                                    <th width="10%;">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @php($i =1)
                                 @foreach($data as $row)
-                                    <td><img src="{{ URL::to('/') }}/uploads/writers/{{ $row->image }}" class="img-thumbnail" width="75" /></td>
-                                    <td>{{ $row->title }}</td>
-                                    <td>{{ $row->title_bang }}</td>
-                                    <td>{{ $row->slug }}</td>
-                                    <td>{{ $row->phone }}</td>
-                                    <td>{{ $row->email }}</td>
-                                    <td>{{ $row->address }}</td>
-                                    <td>
-                                        <a href="{{route('crud.show', $row->id)}}" title="View Details" class="btn btn-primary">View</a>
-                                        <a href="{{route('crud.edit', $row->id)}}" title="Update" class="btn btn-primary">Edit</a>
-                                        <a href="{{route('crud.destroy', $row->id)}}" title="Delete" class="btn btn-danger">Delete</a>
-                                    </td>
+                                    <tr>
+                                        <td>{{$i++}}</td>
+                                        <td><img src="{{ URL::to('/') }}/uploads/writers/{{ $row->image }}" class="img-thumbnail" width="75" /></td>
+                                        <td>{{ $row->title }}</td>
+                                        <td>{{ $row->title_bang }}</td>
+                                        <td>{{ $row->slug }}</td>
+                                        <td>{{ $row->phone }}</td>
+                                        <td>{{ $row->email }}</td>
+                                        <td>
+                                            <a href="{{route('crud.show', $row->id)}}" data-toggle="tooltip" data-placement="top" title="View User"><i class="fa fa-eye text-success"></i></a>&nbsp; &nbsp;
+                                            <a href="{{route('crud.edit', $row->id)}}" class="edit" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil text-warning"></i></a>&nbsp; &nbsp;
+                                            <a href="#" id="{{$row->id}}" onclick="" class="deleteBtn hidden-xs hidden-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger"></i></a>
+                                            <form id="delWriterForm{{$row->id}}" action="{{route('del-writer')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{$row->id}}" name="id">
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
+                                <script>
+                                    $('.deleteBtn').click(function () {
+                                        var writerID = $(this).attr('id');
+                                        event.preventDefault();
+                                        var check = confirm('Are you sure to delete this writer??');
+                                        if(check){
+                                            document.getElementById('delWriterForm'+writerID).submit();
+                                        }
 
+                                    });
+                                </script>
                                 </tbody>
                                 <tfoot>
-                                <tr>
-                                    <th>Photo</th>
-                                    <th>Name Eng.</th>
-                                    <th>Name Bang.</th>
-                                    <th>SLUG URL</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Action</th>
-                                </tr>
+                                    <tr>
+                                        <th>Photo</th>
+                                        <th>Name Eng.</th>
+                                        <th>Name Bang.</th>
+                                        <th>SLUG URL</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </tfoot>
                             </table>
                             {!! $data->links() !!}
                         </div>
                     </div>
+                </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -174,13 +193,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="slug" class="col-sm-12 control-label">Writer Name Slug URL (use-dash-for-space) *</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="validate[required] form-control smallLetter" id="slug" name="slug" placeholder="slug-url (i.e. হুমায়ূন-আহমেদ)" value="" maxlength="200" required="">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <label for="phone" class="col-sm-12 control-label">Contact Information</label>
                                     <div class="col-sm-6 fLeft">
                                         <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" value="" maxlength="50" >
@@ -202,7 +214,7 @@
                                 <div class="form-group">
                                     <label for="phone" class="col-sm-12 control-label">Photo</label>
                                     <div class="col-sm-12">
-                                        <input type="file" class="form-control" id="image" name="image"  value="" maxlength="200" >
+                                        <input type="file" class="form-control" id="image" name="image" accept="image/*"  value="" maxlength="200" >
                                     </div>
                                 </div>
 
@@ -228,8 +240,45 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-light">Close</button>
-                    <button type="button" class="btn btn-success">Save changes</button>
+                    <!--<button type="button" class="btn btn-success">Save changes</button> -->
                 </div>
+                <!-- end page level scripts -->
+                @section('scripts')
+                    <script>
+                        // $(document).ready(function(){
+                        //     $("#title").on('change', function() {
+                        //         var value = $("#title").value;
+                        //         //do your work here
+                        //     })
+                        // })
+
+
+
+                        // $(document).ready(function() {
+                        //     $("#title").blur(function(){
+                        //         $('#slug').val($(this).val());
+                        //     });
+                        // });
+                        // $(document).ready(function() {
+                        //     $("#title").blur(function(){
+                        //         var titleValue = $('#title').val();
+                        //         alert (titleValue);
+                        //         $('#slug').val($(this).val());
+                        //         //$('#slug').val(titleValue.val());
+                        //     });
+                        // });
+
+                        {{--$('#title').change(function(e) {--}}
+                        {{--    $.get('{{ route('pages.check_slug') }}',--}}
+                        {{--        { 'title': $(this).val() },--}}
+                        {{--        function( data ) {--}}
+                        {{--            $('#slug').val(data.slug);--}}
+                        {{--        }--}}
+                        {{--    );--}}
+                        {{--});--}}
+
+                    </script>
+                @endsection
             </div>
         </div>
     </div>
@@ -238,46 +287,11 @@
 
 
 @endsection
-<?php /*
-<!--Plugin scripts-->
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/jquery-validation-engine/js/jquery.validationEngine.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/jquery-validation-engine/js/jquery.validationEngine-en.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/jquery-validation/js/jquery.validate.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datepicker/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datetimepicker/js/DateTimePicker.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/moment/js/moment.min.js"></script>
-<!--End of plugin scripts-->
-<!--Page level scripts-->
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/autosize/js/jquery.autosize.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/js/form.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/js/pages/form_validation.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/js/pages/form_elements.js"></script>
-*/
-?>
 
 <script type="text/javascript" src="{{asset('/')}}admin/js/components.js"></script>
-<!--plugin scripts-->
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/select2/js/select2.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/js/pluginjs/dataTables.tableTools.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/dataTables.colReorder.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/dataTables.responsive.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/buttons.colVis.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/buttons.bootstrap.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/buttons.print.min.js"></script>
-<script type="text/javascript" src="{{asset('/')}}admin/vendors/datatables/js/dataTables.scroller.min.js"></script>
-<!-- end of plugin scripts -->
-<!--Page level scripts-->
-<script type="text/javascript" src="{{asset('/')}}admin/js/pages/simple_datatables.js"></script>
-<!-- end of global scripts-->
 
 
 <!--End of global scripts-->
 <script type="text/javascript" src="{{asset('/')}}admin/js/pages/modals.js"></script>
 
-<!-- end page level scripts -->
+

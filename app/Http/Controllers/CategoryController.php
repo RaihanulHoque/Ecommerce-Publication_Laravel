@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
-use DataTables;
+use DB;
 use Illuminate\Support\Facades\Auth;
+use function PHPSTORM_META\argumentsSet;
 
 class CategoryController extends Controller
 {
@@ -14,39 +15,20 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        $data = Category::latest()->paginate(15);
+        return view('admin.category.index', compact('data'))->with('i',(request()->input('page', 1) -1) *15);
+    }
 
-        if ($request->ajax()) {
-            $data = Category::latest()->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editCategory">Edit</a>';
-
-                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteCategory">Delete</a>';
-
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-
-
-
-        /*
-         $symptoms = DB::table('symptoms')->where([
-            ['status', '=', '1'],
-        ])->get();
-        */
-        $categories = Category::all();
-
-        return view('admin/category/category', compact('categories'));
-
-
-        //return view('admin/category/category');
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('create');
     }
 
     /**
@@ -57,42 +39,79 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        Category::saveCategoryInfo($request);
 
-        Category::updateOrCreate(['id' => $request->category_id],
-            [
-                'parent' => $request->parent,
-                'title' => $request->title,
-                'title_bang' => $request->title_bang,
-                'slug' => $request->slug,
-                'detail_info' => $request->detail_info,
-                'created_by' => Auth::id(),
-                'created_at' => time(),
-            ]
-        );
-        return response()->json(['success'=>'Category saved successfully.']);
+        // return redirect('admin.writer.index')->with('success', 'Writer Added Successfully!');
+        return redirect('admin/categories')->with('success', 'Category Added Successfully!');
+
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @param  \App\Writer $writer
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $data = Category::findOrFail($id);
+        // return view('admin.writer.index', compact('shData','sh'));
+        return view('admin.category.view', compact('data'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  int $id
+     * @param  \App\Writer $writer
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return response()->json($category);
+        $data = Category::findOrFail($id);
+        //return view('admin.writer.index', compact('edtData','edt'));
+        return view('admin.category.edit', compact('data'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Writer $writer
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        Category::updateCategoryInfo($request, $id);
+
+        // return redirect('admin.writer.index')->with('success', 'Writer Added Successfully!');
+        return redirect('admin/categories')->with('success', 'Category Updated Successfully!');
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Writer $writer
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
+        $data = Category::findOrFail($id);
+        $data->delete();
 
-        return response()->json(['success'=>'Category deleted successfully.']);
+        //return redirect('admin.writer.index')->with('success', 'Writer Updated Successfully!');
+        return redirect('admin/categories')->with('success', 'Category Deleted Successfully!');
+
+    }
+
+    public function delete(Request $request){
+        $writer = Category::find($request->id);
+        $writer->delete();
+        return redirect('admin/categories')->with('success', 'Category Deleted Successfully!');
+
     }
 }

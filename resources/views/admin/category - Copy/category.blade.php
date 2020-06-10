@@ -97,6 +97,7 @@
                                                 <div class="col-sm-12">
                                                     <select name="parent" id="parent" class="validate[required] form-control select2">
                                                         <option value="0">Select Parent</option>
+                                                        <option value="1">1</option>
                                                         @foreach($categories as $category)
                                                         <option value="{{$category->id}}">{{$category->title}}</option>
                                                         @endforeach

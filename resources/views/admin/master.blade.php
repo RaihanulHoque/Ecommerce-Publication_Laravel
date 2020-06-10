@@ -1,8 +1,13 @@
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta charset="UTF-8">
     <title>@yield('title')</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,12 +24,6 @@
     <link type="text/css" rel="stylesheet" href="{{asset('/')}}admin/css/pages/new_dashboard.css"/>
     <link type="text/css" rel="stylesheet" href="#" id="skin_change"/>
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body class="body">
@@ -59,6 +58,7 @@ z-index: 999999">
                         <i class="fa fa-bars"></i>
                     </span>
                 </div>
+                <?php /*
                 <div class="top_search_box d-none d-md-flex">
                     <form class="header_input_search">
                         <input type="text" placeholder="Search" name="search">
@@ -68,6 +68,7 @@ z-index: 999999">
                         <div class="overlay"></div>
                     </form>
                 </div>
+                */?>
                 <div class="topnav dropdown-menu-right">
                     <div class="btn-group small_device_search" data-toggle="modal"
                          data-target="#search_modal">
@@ -390,6 +391,7 @@ z-index: 999999">
     <div class="wrapper">
         <div id="left">
             <div class="menu_scroll">
+                <?php /*
                 <div class="left_media">
                     <div class="media user-media">
                         <div class="user-media-toggleHover">
@@ -405,6 +407,7 @@ z-index: 999999">
                     </div>
                     <hr/>
                 </div>
+                */ ?>
                 <ul id="menu">
                     <li class="active">
                         <a href="{{route('home')}}">
@@ -435,28 +438,35 @@ z-index: 999999">
                             </li>
                         </ul>
                     </li
-                    ><li class="dropdown_menu">
+                    >*/ ?>
+                    <li class="dropdown_menu">
                         <a href="javascript:;">
                             <i class="fa fa-anchor"></i>
-                            <span class="link-title menu_hide">&nbsp; Publishers</span>
+                            <span class="link-title menu_hide">&nbsp; Categories</span>
                             <span class="fa arrow menu_hide"></span>
                         </a>
                         <ul>
                             <li>
-                                <a href="{{route('add-publisher')}}">
+                                <a href="{{route('main-categories')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="link-title">&nbsp;Add Publisher</span>
+                                    &nbsp; Main Categories
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('manage-publishers')}}">
+                                <a href="{{route('sub-categories')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    &nbsp; Manage Publishers
+                                    &nbsp; Manage Sub-Categories
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('sec-sub-categories')}}">
+                                    <i class="fa fa-angle-right"></i>
+                                    &nbsp; Secondary Sub-Categories
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    */ ?>
+
                     <li class="dropdown_menu">
                         <a href="javascript:;">
                             <i class="fa fa-anchor"></i>
@@ -467,15 +477,10 @@ z-index: 999999">
                             <li>
                                 <a href="cards.html">
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="link-title">Manage Books</span>
+                                    <span class="link-title"> Manage Books</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{route('book-categories')}}">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Book Categories
-                                </a>
-                            </li>
+
                             <li>
                                 <a href="{{route('writers')}}">
                                     <i class="fa fa-angle-right"></i>
@@ -483,9 +488,9 @@ z-index: 999999">
                                 </a>
                             </li>
                             <li>
-                                <a href="icons.html">
+                                <a href="{{route('publications')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    &nbsp; Icons
+                                    &nbsp; Manage Publications
                                 </a>
                             </li>
                             <li>
@@ -578,7 +583,7 @@ z-index: 999999">
                         </a>
                         <ul>
                             <li>
-                                <a href=" {{route('products')}}">
+                                <a href="  ">
                                     <i class="fa fa-angle-right"></i>
                                     PRODUCTS
                                 </a>
@@ -1435,6 +1440,10 @@ z-index: 999999">
 <script src="{{asset('/')}}admin/js/bootstrap.min.js"></script>
 <script src="{{asset('/')}}admin/js/dataTables.bootstrap4.min.js"></script>
 
+<!--Page level scripts-->
+<script type="text/javascript" src="{{asset('/')}}admin/js/pages/simple_datatables.js"></script>
+<!-- end of global scripts-->
+@yield('scripts')
 
 
 

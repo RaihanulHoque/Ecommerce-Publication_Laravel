@@ -33,7 +33,7 @@
 @extends('admin.master')
 
 @section('title')
-    Admin Panel | Manage Writer/Auther
+    Admin Panel | Manage Writer
 @endsection
 
 @section('body')
@@ -43,7 +43,7 @@
                 <div class="col-sm-5 col-lg-6">
                     <h4 class="nav_top_align">
                         <i class="fa fa-pencil"></i>
-                        Writers / Authers
+                        Writers
                     </h4>
                 </div>
                 <div class="col-sm-7 col-lg-6">
@@ -65,36 +65,125 @@
     </header>
     <div class="outer">
         <div class="inner bg-container">
-            <div class="row">
 
-                <div class="col-12 data_tables">
-                    <div class="card ">
-                        <div class="card-header bg-white">
-                            <i class="fa fa-table"></i> View Writer Detail
-                        </div>
-                        <div class="card-body ">
-                            <div align="right">
-                                <a href="{{ route('crud.index') }}" class="btn btn-default">Back</a>
-                            </div>
-                            <br />
-                            <div class="jumbotron text-center">
-                                <div align="right">
-                                    <a href="{{ route('crud.index') }}" class="btn btn-default">Back</a>
+            <div class="card">
+                <div class="card-header bg-white">
+                    <i class="fa fa-table"></i> View Writer Detail
+                    <!--<div align="right">
+                        <a class="btn" href="" >Back</a>
+                    </div> -->
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+
+                        <div class="col-lg-6 m-t-35">
+
+                            <div class="text-center">
+                                <div class="form-group">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-new thumb_zoom zoom admin_img_width">
+                                            <img src="{{ URL::to('/') }}/uploads/writers/{{ $data->image }}" alt="admin" class="admin_img_width"/>
+
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumb_zoom zoom admin_img_width">
+
+                                        </div>
+                                        <!--
+                                        <div class="btn_file_position">
+                                                    <span class="btn btn-primary btn-file">
+                                                        <span class="fileinput-new">Change image</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" name="Changefile">
+                                                    </span>
+                                            <a href="#" class="btn btn-warning fileinput-exists"
+                                               data-dismiss="fileinput">Remove</a>
+                                        </div>
+                                        -->
+                                    </div>
                                 </div>
-                                <br />
-                                <img src="{{ URL::to('/') }}/uploads/writers/{{ $data->image }}" class="img-thumbnail" />
-                                <h3>Name Bangla - {{ $data->title_bang }} </h3>
-                                <h3>SLUG URL - {{ $data->slug }}</h3>
-                                <p>Phone - {{ $data->phone}}</p>
-                                <p>Email - {{ $data->email}}</p>
-                                <p>Address - {{ $data->address}}</p>
-                                <p>Detail Info - {{ $data->detail_info}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 m-t-25">
+                            <div>
+                                <ul class="nav nav-inline view_user_nav_padding">
+                                    <li class="nav-item card_nav_hover">
+                                        <a class="nav-link active" href="#user" id="home-tab"
+                                           data-toggle="tab" aria-expanded="true">Basic Info.</a>
+                                    </li>
+                                    <li class="nav-item card_nav_hover">
+                                        <a class="nav-link" href="#tab2" id="hats-tab" data-toggle="tab">Detail Info</a>
+                                    </li>
+
+                                </ul>
+                                <div id="clothing-nav-content" class="tab-content m-t-10">
+                                    <div role="tabpanel" class="tab-pane fade show active" id="user">
+                                        <table class="table" id="users">
+                                            <br />
+
+                                            <tr>
+                                                <td>Name</td>
+                                                <td class="inline_edit">
+                                                        <span class="editable" data-title="Edit User Name">{{ $data->title }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bangla Name</td>
+                                                <td>
+                                                    <span class="editable" data-title="Edit User Name">{{ $data->title_bang }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>SLUG-URL</td>
+                                                <td>
+                                                    <span class="editable" data-title="Edit User Name">{{ $data->slug }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone Number</td>
+                                                <td>
+                                                    <span class="editable" data-title="Edit Phone Number">{{ $data->phone }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email Address</td>
+                                                <td>
+                                                    <span class="editable" data-title="Edit Phone Number">{{ $data->emial }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address</td>
+                                                <td>
+                                                    <span class="editable" data-title="Edit Address">{{ $data->address }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Created At</td>
+                                                <td>{{ $data->created_at }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Created By</td>
+                                                <td>
+                                                    <span class="editable" data-title="Edit City">{{ app('App\User')->getData($data->created_by, "name") }}</span>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab2">
+                                        <div class="card_nav_body_padding">
+
+                                            <p class="text-justify">
+                                                {{$data->detail_info}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
+
             <!-- /.row -->
         </div>
         <!-- /.inner -->

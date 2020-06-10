@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getData($id, $field) {
+        $value = User::where('id', $id)->first();
+        if (empty($value->$field)) {
+            return null;
+        } else {
+            return $value->$field;
+        }
+    }
 }

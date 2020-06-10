@@ -15,25 +15,21 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent');
-            $table->string('title');
+             $table->string('title');
             $table->string('title_bang');
-            $table->string('slug')->unique();
-        $table->text('detail_info');
+            $table->string('slug');
+            $table->string('image')->nullable();
+			$table->text('detail_info');
             $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
 
-            $table->index('parent', 'idx_category_parent');
+            $table->index('slug', 'idx_category_slug');
             $table->index('title', 'idx_title');
             $table->index('title_bang', 'title_bang');
 
             $table->timestamps();
         });
 
-        Schema::table('updated_by', function (Blueprint $table) {
-            // change() tells the Schema builder that we are altering a table
-            $table->integer('updated_by')->unsigned()->nullable()->change();
-        });
     }
 
     /**

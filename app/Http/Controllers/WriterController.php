@@ -17,9 +17,8 @@ class WriterController extends Controller
      */
     public function index()
     {
-        $data = Writer::latest()->paginate(5);
-        //return view('admin.writer.index', compact('data'))->with('i',(request()->input('page', 1) -1) *5);
-        return view('admin.writer.index', compact('data'))->with('i',(request()->input('page', 1) -1) *5);
+        $data = Writer::latest()->paginate(50);
+        return view('admin.writer.index', compact('data'))->with('i',(request()->input('page', 1) -1) *50);
     }
 
     /**
@@ -40,34 +39,10 @@ class WriterController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'         =>'required',
-            'title_bang'    =>'required',
-            'slug'          =>'required',
-            'image'         =>'image|max:1000',
-        ]);
+        Writer::saveWriterInfo($request);
 
-        $image = $request->file('image');
-        $image_origin_name = $image;
-        $new_name = rand().'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('uploads/writers/'),$new_name);
-        $form_data = array(
-            'title'         =>$request->title,
-            'title_bang'    =>$request->title_bang,
-            'slug'          =>$request->slug,
-            'phone'         =>$request->phone,
-            'email'         =>$request->email,
-            'address'       =>$request->address,
-            'detail_info'   =>$request->detail_info,
-            'image'         =>$new_name,
-            'image_origin_name'=> $image_origin_name,
-            'created_by'    =>Auth::id(),
-            'created_at'    =>time()
-        );
-
-        Writer::create($form_data);
        // return redirect('admin.writer.index')->with('success', 'Writer Added Successfully!');
-        return redirect('crud')->with('success', 'Writer Added Successfully!');
+        return redirect('admin/writers')->with('success', 'Writer Added Successfully!');
 
     }
 
@@ -108,51 +83,12 @@ class WriterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $writer = Writer::findOrFail($id);
 
-        $image_name =$request->hidden_image;
-        $image_origin_name = $request->image_origin_name;
-        $image = $request->file('image');
-        if($image != '')
-        {
-            $request -> validate([
-                'title'         =>'required',
-                'title_bang'    =>'required',
-                'slug'          =>'required',
-                'image'         =>'image|max:1000'
-            ]);
-            $image = $request->file('image');
-            $image_origin_name = $image;
-            $image_name = rand().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('uploads/writers/'),$image_name);
-        }else{
-            $request -> validate([
-                'title'         =>'required',
-                'title_bang'    =>'required',
-                'slug'          =>'required'
-            ]);
-        }
+        Writer::updateWriterInfo($request, $id);
 
-        $form_data = array(
-            'title'         =>$request->title,
-            'title_bang'    =>$request->title_bang,
-            'slug'          =>$request->slug,
-            'phone'         =>$request->phone,
-            'email'         =>$request->email,
-            'address'       =>$request->address,
-            'detail_info'   =>$request->detail_info,
-            'image'         =>$image_name,
-            'image_origin_name'=> $image_origin_name,
-            'updated_by'    =>Auth::id(),
-           // 'updated_at'    =>time()
-        );
+        // return redirect('admin.writer.index')->with('success', 'Writer Added Successfully!');
+        return redirect('admin/writers')->with('success', 'Writer Updated Successfully!');
 
-        DB::table('writers')->where([
-            ['id', '=', $id],
-        ])->update($form_data);
-         //Writer::WhereId($id)->update($form_data);
-        //return redirect('admin.writer.index')->with('success', 'Writer Updated Successfully!');
-        return redirect('crud')->with('success', 'Writer Updated Successfully!');
 
     }
 
@@ -168,7 +104,14 @@ class WriterController extends Controller
         $data->delete();
 
         //return redirect('admin.writer.index')->with('success', 'Writer Updated Successfully!');
-        return redirect('crud')->with('success', 'Writer Updated Successfully!');
+        return redirect('crud')->with('success', 'Writer Deleted Successfully!');
+
+    }
+
+    public function delete(Request $request){
+        $writer = Writer::find($request->id);
+        $writer->delete();
+        return redirect('admin/writers')->with('success', 'Writer Deleted Successfully!');
 
     }
 }
