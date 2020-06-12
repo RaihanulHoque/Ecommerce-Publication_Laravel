@@ -24,8 +24,6 @@ Auth::routes();
 Route::get('pages/check_slug', 'PagesController@check_slug')
     ->name('pages.check_slug');
 
-
-//Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home',[
     'uses'  => 'HomeController@index',
     'as'    => 'home'
@@ -79,6 +77,7 @@ Route::post('/admin/sec-sub-categories/del-sec-sub-category',[
     'as'    => 'del-sec-sub-category'
 ]);
 
+
 //Writer Management
 Route::get('/admin/writers',[
     'uses'  => 'WriterController@index',
@@ -105,8 +104,24 @@ Route::get('/admin/publication/delete/{id}',[
     'uses'  => 'PublicationController@destroy',
     'as'    => 'del-publication'
 ]);
-Route::post('/admin/publication/del-main-category',[
+Route::post('/admin/publication/del-publication',[
     'uses'  => 'PublicationController@delete',
     'as'    => 'del-publication'
+]);
+
+
+//Merchants Management
+Route::resource('admin/merchants','MerchantController');
+Route::get('/admin/merchants',[
+    'uses'  => 'MerchantController@index',
+    'as'    => 'merchants'
+]);
+Route::get('/admin/merchant/delete/{id}',[
+    'uses'  => 'MerchantController@destroy',
+    'as'    => 'del-merchant'
+]);
+Route::post('/admin/merchant/del-merchant',[
+    'uses'  => 'MerchantController@delete',
+    'as'    => 'del-merchant'
 ]);
 

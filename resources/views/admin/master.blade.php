@@ -494,83 +494,9 @@ z-index: 999999">
                                 </a>
                             </li>
                             <li>
-                                <a href="tooltips.html">
+                                <a href="{{route('merchants')}}">
                                     <i class="fa fa-angle-right"></i>
-                                    &nbsp; Tooltips
-                                </a>
-                            </li>
-                            <li>
-                                <a href="animations.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Animations
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="sliders.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Sliders
-                                </a>
-                            </li>
-                            <li>
-                                <a href="notifications.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Notifications
-                                </a>
-                            </li>
-                            <li>
-                                <a href="p_notify.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; P-Notify
-                                </a>
-                            </li>
-                            <li>
-                                <a href="izitoast.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Izi-Toast
-                                </a>
-                            </li>
-                            <li>
-                                <a href="cropper.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Cropper
-                                </a>
-                            </li>
-                            <li>
-                                <a href="file_upload.html">
-                                    <i class="fa fa-angle-right"></i> &nbsp; File Upload
-                                </a>
-                            </li>
-                            <li>
-                                <a href="jstree.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp;Js Tree
-                                </a>
-                            </li>
-                            <li>
-                                <a href="modal.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Modals
-                                </a>
-                            </li>
-
-
-                            <li>
-                                <a href="sortable.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Sortable
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sweet_alert.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Sweet alerts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="grids_layout.html">
-                                    <i class="fa fa-angle-right"></i>
-                                    &nbsp; Grid View
+                                    &nbsp;Manage Merchants
                                 </a>
                             </li>
                         </ul>

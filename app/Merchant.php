@@ -6,103 +6,104 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use DB;
-class Writer extends Model
-{
-    //title title_bang slug phone email address detail_info
-    protected $fillable=['title', 'title_bang', 'slug','phone','email','address', 'detail_info', 'image', 'image_origin_name', 'created_by','updated_by' ];
+use Intervention\Image\ImageManagerStatic as Image;
 
-    public static function saveWriterInfo($request){
+class Merchant extends Model
+{
+    protected $fillable=['title', 'title_bang', 'slug','phone','email', 'athorised_person','address', 'detail_info', 'image', 'created_by','updated_by', 'status' ];
+
+    public static function saveMerchantInfo($request){
 
         $slugTxt = Str::slug($request->title);
 
         $request->validate([
             'title'         =>'required',
             'title_bang'    =>'required',
-            //'slug'          =>'required',
-            'image'         =>'image|max:1000',
+            'image'         =>'image|max:1200',
         ]);
-
-        $image = $request->file('image');
-        $image_origin_name = $image;
-        $new_name = rand().'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('uploads/writers/'),$new_name);
+        $filename ='';
+        if($request->hasFile('image')) {
+            $image       = $request->file('image');
+            $filename = rand().'.'.$image->getClientOriginalExtension();
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(1000, 150);
+            $image_resize->save(public_path('uploads/merchants/' .$filename));
+        }
+        //echo $filename; exit();
         $form_data = array(
             'title'         =>$request->title,
             'title_bang'    =>$request->title_bang,
             'slug'          =>$slugTxt,
+            'athorised_person'          =>$request->athorised_person,
             'phone'         =>$request->phone,
             'email'         =>$request->email,
             'address'       =>$request->address,
             'detail_info'   =>$request->detail_info,
-            'image'         =>$new_name,
-            'image_origin_name'=> $image_origin_name,
+            'status'        =>1,
+            'image'         =>$filename,
             'created_by'    =>Auth::id(),
             'created_at'    =>time()
         );
 
-        Writer::create($form_data);
+        Merchant::create($form_data);
     }
 
-    //UPDATE WRITER INFORMATION
-    public static function updateWriterInfo($request, $id){
+    //UPDATE Merchant INFORMATION
+    public static function updateMerchantInfo($request, $id){
 
-        $writer = Writer::findOrFail($id);
+        $Merchant = Merchant::findOrFail($id);
         $slugTxt = Str::slug($request->title);
 
-        $image_name =$request->hidden_image;
-        $image_origin_name = $request->image_origin_name;
+        $filename =$request->hidden_image;
         $image = $request->file('image');
         if($image != '')
         {
             $request -> validate([
                 'title'         =>'required',
                 'title_bang'    =>'required',
-                //'slug'          =>'required',
                 'image'         =>'image|max:1000'
             ]);
-            $image = $request->file('image');
-            $image_origin_name = $image;
-            $image_name = rand().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('uploads/writers/'),$image_name);
+
+            $image          = $request->file('image');
+            $filename       = rand().'.'.$image->getClientOriginalExtension();
+            $image_resize   = Image::make($image->getRealPath());
+            $image_resize->resize(1000, 150);
+            $image_resize->save(public_path('uploads/merchants/' .$filename));
+
         }else{
             $request -> validate([
                 'title'         =>'required',
                 'title_bang'    =>'required',
-                'slug'          =>'required'
             ]);
         }
 
         $form_data = array(
             'title'         =>$request->title,
+            'athorised_person'         =>$request->athorised_person,
             'title_bang'    =>$request->title_bang,
             'slug'          =>$slugTxt,
-            'phone'         =>$request->phone,
-            'email'         =>$request->email,
-            'address'       =>$request->address,
             'detail_info'   =>$request->detail_info,
-            'image'         =>$image_name,
-            'image_origin_name'=> $image_origin_name,
+            'image'         =>$filename,
             'updated_by'    =>Auth::id(),
-            // 'updated_at'    =>time()
+            'status'        =>$request->status,
         );
 
-        DB::table('writers')->where([
+        DB::table('merchants')->where([
             ['id', '=', $id],
         ])->update($form_data);
-        //Writer::WhereId($id)->update($form_data);
+        //Merchant::WhereId($id)->update($form_data);
         //return redirect('admin.writer.index')->with('success', 'Writer Updated Successfully!');
-        return redirect('crud')->with('success', 'Writer Updated Successfully!');
+        return redirect('crud')->with('success', 'Merchant Updated Successfully!');
 
     }
 
+
     public static function getData($id, $field) {
-        $value = Writer::where('id', $id)->first();
+        $value = Merchant::where('id', $id)->first();
         if (empty($value->$field)) {
             return null;
         } else {
             return $value->$field;
         }
     }
-
 }
-

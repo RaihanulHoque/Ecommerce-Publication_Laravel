@@ -88,6 +88,22 @@ z-index: 999999">
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12">
+                                    <label for="email" class="col-form-label">Phone Number *</label>
+                                    <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-envelope text-primary"></i>
+                                    </span>
+                                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                        @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
                                     <label for="password" class="col-form-label text-sm-right">Password *</label>
                                     <div class="input-group">
                                     <span class="input-group-addon">
@@ -148,5 +164,4 @@ z-index: 999999">
 </body>
 
 
-<!-- Mirrored from demo.admireadmin.com/admire2/register1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 05:40:22 GMT -->
 </html>
